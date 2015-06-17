@@ -10,12 +10,12 @@ package veterinaria;
  *
  * @author USUARIO
  */
-public class PRINCIPAL extends javax.swing.JFrame {
+public class PRINCIPAL2 extends javax.swing.JFrame {
 
     /**
      * Creates new form frmMDIPrincipal
      */
-    public PRINCIPAL() {
+    public PRINCIPAL2() {
         //este metodo es para minimizar y maximizar en la pantalla
         initComponents();
         //setExtendedState(MAXIMIZED_BOTH);
@@ -130,10 +130,10 @@ public class PRINCIPAL extends javax.swing.JFrame {
         menuBar.add(editMenu);
 
         helpMenu.setMnemonic('h');
-        helpMenu.setText("Administrar");
+        helpMenu.setText("Ayuda");
 
         contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Nuevo Usuario");
+        contentMenuItem.setText("Acerca");
         contentMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contentMenuItemActionPerformed(evt);
@@ -175,8 +175,7 @@ prueba.show();
     }//GEN-LAST:event_cutMenuItemActionPerformed
 
     private void contentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItemActionPerformed
-       NuevoUsuario nu=new NuevoUsuario();
-            nu.show();
+        // TODO add your handling code here:
      
     }//GEN-LAST:event_contentMenuItemActionPerformed
 

@@ -21,6 +21,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     void acceder(String usuario, String contraseña) {
@@ -43,12 +44,13 @@ public class Inicio extends javax.swing.JFrame {
             if(cap.equals("Invitado")){
 //            prueba1 pru = new prueba1();
 //            pru.show();
-            NuevoUsuario nu=new NuevoUsuario();
-            nu.show();
+                PRINCIPAL2 prin2 = new PRINCIPAL2();
+                prin2.show();
+            
             
             
             }
-            if((!cap.equals("Invitado"))&& (!cap.equals("Usuario"))){
+            if((!cap.equals("Invitado"))&& (!cap.equals("Administrador"))){
                 JOptionPane.showMessageDialog(this,"NO EXISTE DATOS");
             }
         } catch (SQLException ex) {

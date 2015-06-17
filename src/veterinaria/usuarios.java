@@ -25,7 +25,9 @@ public class usuarios extends javax.swing.JInternalFrame {
 DefaultTableModel modelo;
     /** Creates new form usuarios */
     public usuarios() {
+        this.setLocation(null);
         initComponents();
+        
         mostrarusuarios();
         Generarnumeracion();
        

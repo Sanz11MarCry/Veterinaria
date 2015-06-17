@@ -23,6 +23,7 @@ public class prueba1 extends javax.swing.JFrame {
      */
     public prueba1() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

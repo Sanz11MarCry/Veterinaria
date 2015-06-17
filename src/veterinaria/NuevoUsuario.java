@@ -26,6 +26,7 @@ DefaultTableModel modelo;
      */
     public NuevoUsuario() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     conectar con = new conectar();
       Connection reg =con.conexion();
