@@ -58,6 +58,11 @@ public class PRINCIPAL extends javax.swing.JFrame {
         jMenu5.setText("Inicio");
 
         jMenuItem3.setText("Nosotros");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem3);
 
         jMenuItem2.setText("Salir");
@@ -218,6 +223,11 @@ factura.show();
         inicio.show();
         this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Nosotros noso=new Nosotros();
+        noso.show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
