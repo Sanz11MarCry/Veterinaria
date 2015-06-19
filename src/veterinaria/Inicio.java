@@ -36,20 +36,17 @@ public class Inicio extends javax.swing.JFrame {
                 cap = rs.getString("tipo_usuario");// nesecitamos capturar de  la tabla usuario  solo el tipo
             }
             if (cap.equals("Administrador")) {
-                PRINCIPAL prin = new PRINCIPAL();
-                prin.show();
+                PRINCIPAL prin = new PRINCIPAL();//instanciamos
+                prin.show();//hacemos habrir la ventana principal 1
+                this.dispose();//hacemos que se cierre esta ventana 
                
                 
             }
             if(cap.equals("Invitado")){
-//            prueba1 pru = new prueba1();
-//            pru.show();
-                PRINCIPAL2 prin2 = new PRINCIPAL2();
-                prin2.show();
-            
-            
-            
-            }
+                PRINCIPAL2 prin2 = new PRINCIPAL2();//instanciamos 
+                prin2.show();//hacemos habrir la ventana principal 2
+            this.dispose();//hacemos que se cierre esta ventana 
+                 }
             if((!cap.equals("Invitado"))&& (!cap.equals("Administrador"))){
                 JOptionPane.showMessageDialog(this,"NO EXISTE DATOS");
             }
@@ -106,6 +103,7 @@ public class Inicio extends javax.swing.JFrame {
        String contra=jPCONTRASEÑA.getText();
        String usu=new String (txtUSUARIO.getText());
         acceder(usu, contra);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

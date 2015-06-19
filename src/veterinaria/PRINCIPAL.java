@@ -19,7 +19,7 @@ public class PRINCIPAL extends javax.swing.JFrame {
         //este metodo es para minimizar y maximizar en la pantalla
         initComponents();
         //setExtendedState(MAXIMIZED_BOTH);
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);//PARA QUE LA PANTALLA SALGA AL CENTRO
         
     }
 
@@ -61,6 +61,11 @@ public class PRINCIPAL extends javax.swing.JFrame {
         jMenu5.add(jMenuItem3);
 
         jMenuItem2.setText("Salir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem2);
 
         menuBar.add(jMenu5);
@@ -163,11 +168,11 @@ public class PRINCIPAL extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
         pack();
@@ -180,7 +185,8 @@ buscar.show();
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
-        // TODO add your handling code here:
+        RegistrarCliente reg=new RegistrarCliente();
+        reg.show();
         
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
@@ -206,6 +212,12 @@ buscar.show();
        Factura factura = new Factura();
 factura.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Inicio inicio = new Inicio();
+        inicio.show();
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -17,6 +17,7 @@ public class Factura extends javax.swing.JFrame {
      */
     public Factura() {
         initComponents();
+        this.setLocationRelativeTo(null);//PARA QUE LA PANTALLA SALGA AL CENTRO
     }
 
     /**
@@ -58,7 +59,7 @@ public class Factura extends javax.swing.JFrame {
 
         jLabel11.setText("jLabel11");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("NumFactura");
 

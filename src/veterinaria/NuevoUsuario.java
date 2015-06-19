@@ -107,7 +107,7 @@ void mostrarusuarios(){
         txtCONTRA = new javax.swing.JPasswordField();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nuevo Usuario");
 
@@ -268,7 +268,7 @@ void mostrarusuarios(){
             
 
         } catch (SQLException ex) {
-            Logger.getLogger(prueba1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
