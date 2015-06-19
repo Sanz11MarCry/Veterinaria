@@ -110,8 +110,6 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem5);
 
-        menuBar.add(jMenu3);
-
         editMenu.setMnemonic('e');
         editMenu.setText("Citas");
 
@@ -137,7 +135,9 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         pasteMenuItem.setText("Cambiar Cita");
         editMenu.add(pasteMenuItem);
 
-        menuBar.add(editMenu);
+        jMenu3.add(editMenu);
+
+        menuBar.add(jMenu3);
 
         jMenu1.setText("Opciónes");
 
@@ -218,6 +218,7 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         Inicio inicio = new Inicio();
         inicio.show();
         this.dispose();
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

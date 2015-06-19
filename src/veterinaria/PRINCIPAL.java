@@ -8,7 +8,7 @@ package veterinaria;
 
 /**
  *
- * @author USUARIO
+ * @author ramirez
  */
 public class PRINCIPAL extends javax.swing.JFrame {
 
