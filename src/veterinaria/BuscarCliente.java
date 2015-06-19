@@ -8,7 +8,7 @@ package veterinaria;
 
 /**
  *
- * @author AbelSanz
+ * @author HUILLCA
  */
 public class BuscarCliente extends javax.swing.JFrame {
 

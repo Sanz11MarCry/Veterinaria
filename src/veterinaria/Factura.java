@@ -8,7 +8,7 @@ package veterinaria;
 
 /**
  *
- * @author AbelSanz
+ * @author HUILLCA
  */
 public class Factura extends javax.swing.JFrame {
 
