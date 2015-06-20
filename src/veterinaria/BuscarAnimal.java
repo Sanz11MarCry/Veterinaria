@@ -59,11 +59,11 @@ public class BuscarAnimal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOMBRE", "RAZA", "SEXO", "EDAD", "COLOR"
+                "ID", "NOMBRE", "EDAD", "GENERO", "TIPO", "RAZA", "COLOR", "CLIENTE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {

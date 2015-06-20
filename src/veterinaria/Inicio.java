@@ -70,20 +70,26 @@ public class Inicio extends javax.swing.JFrame {
         txtUSUARIO = new javax.swing.JTextField();
         jPCONTRASEÑA = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(0, 204, 0));
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("USUARIO :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 90, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, 70, 20));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PASSWORD:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 80, 20));
-        getContentPane().add(txtUSUARIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 190, -1));
-        getContentPane().add(jPCONTRASEÑA, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 120, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, -1, -1));
+        getContentPane().add(txtUSUARIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 160, 20));
+        getContentPane().add(jPCONTRASEÑA, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 120, -1));
 
         jButton1.setText("ENTRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +97,19 @@ public class Inicio extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 520, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel2.setForeground(new java.awt.Color(0, 255, 0));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sesion.png"))); // NOI18N
+        jPanel2.add(jLabel5);
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 150, 150));
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 270, 310));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/INT.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
@@ -103,7 +121,7 @@ public class Inicio extends javax.swing.JFrame {
        String contra=jPCONTRASEÑA.getText();
        String usu=new String (txtUSUARIO.getText());
         acceder(usu, contra);
-        
+        // nadd
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -147,7 +165,10 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPCONTRASEÑA;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtUSUARIO;
     // End of variables declaration//GEN-END:variables
 
