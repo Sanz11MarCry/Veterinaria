@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author crisy ramirez
+ * @author SANZ11
  */
 public class RegistrarAnimal extends javax.swing.JFrame {
-
+//mnada
     /**
      * Creates new form RegistrarAnimal
      */
@@ -26,7 +26,7 @@ public class RegistrarAnimal extends javax.swing.JFrame {
         initComponents();
         Calendar cal = Calendar.getInstance();//instanciamos y creamos un objeto CAL
         String fecha = cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH)+1) + "/" + cal.get(cal.YEAR);// obtenemos los datos 
-    this.lblfecha.setText(fecha);
+        this.lblfecha.setText(fecha);// ESCRIBIMOS EN EL LBLFECHA
     
     
     }
@@ -331,6 +331,9 @@ public class RegistrarAnimal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(RegistrarAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
