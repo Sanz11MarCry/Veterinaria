@@ -4,6 +4,8 @@
  */
 package veterinaria;
 
+import java.util.Calendar;
+
 /**
  *
  * @author USUARIO
@@ -18,6 +20,11 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         initComponents();
         //setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
+        Calendar cal = Calendar.getInstance();//instanciamos y creamos un objeto CAL
+        String fecha = cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH)+1)+ "/" + cal.get(cal.YEAR);// obtenemos los datos 
+        String hora = cal.get(cal.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(cal.SECOND);// obtenemos la ora
+        this.lblfecha.setText(fecha);
+        this.lblhora.setText(hora);
 
     }
 
@@ -31,6 +38,11 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        lblhora = new javax.swing.JLabel();
+        lblfecha = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -52,6 +64,42 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         contentMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblhora.setText("00-00-00");
+
+        lblfecha.setText("00/00/00");
+
+        jLabel1.setText("HORA:");
+
+        jLabel2.setText("FECHA:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 455, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblhora, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblhora, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
+        desktopPane.add(jPanel1);
+        jPanel1.setBounds(0, 470, 670, 30);
 
         jMenu5.setText("Archivo");
 
@@ -100,6 +148,11 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         jMenu3.add(jSeparator1);
 
         jMenuItem4.setText("Registrar Animal");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Buscar Animal");
@@ -109,6 +162,8 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem5);
+
+        menuBar.add(jMenu3);
 
         editMenu.setMnemonic('e');
         editMenu.setText("Citas");
@@ -135,9 +190,7 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         pasteMenuItem.setText("Cambiar Cita");
         editMenu.add(pasteMenuItem);
 
-        jMenu3.add(editMenu);
-
-        menuBar.add(jMenu3);
+        menuBar.add(editMenu);
 
         jMenu1.setText("Opciónes");
 
@@ -171,11 +224,11 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
         );
 
         pack();
@@ -206,7 +259,8 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
     }//GEN-LAST:event_copyMenuItemActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+        BuscarAnimal bus_ani = new BuscarAnimal();
+       bus_ani.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -225,6 +279,11 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         Nosotros noso=new Nosotros();
         noso.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        RegistrarAnimal reg_ani = new RegistrarAnimal();
+       reg_ani.show();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,6 +329,8 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
@@ -278,7 +339,10 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel lblfecha;
+    private javax.swing.JLabel lblhora;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
