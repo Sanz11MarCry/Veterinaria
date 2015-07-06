@@ -70,9 +70,9 @@ public class Inicio extends javax.swing.JFrame {
         txtUSUARIO = new javax.swing.JTextField();
         jPCONTRASEÑA = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,7 +88,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PASSWORD:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, -1, -1));
-        getContentPane().add(txtUSUARIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 160, 20));
+        getContentPane().add(txtUSUARIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 160, 30));
         getContentPane().add(jPCONTRASEÑA, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 120, -1));
 
         jButton1.setText("ENTRAR");
@@ -99,16 +99,17 @@ public class Inicio extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 520, -1, -1));
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+
         jPanel2.setBackground(new java.awt.Color(0, 204, 51));
         jPanel2.setForeground(new java.awt.Color(0, 255, 0));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sesion.png"))); // NOI18N
         jPanel2.add(jLabel5);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 150, 150));
+        jPanel1.add(jPanel2);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 270, 310));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/INT.jpg"))); // NOI18N
@@ -149,6 +150,8 @@ public class Inicio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

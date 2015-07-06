@@ -16,6 +16,7 @@ public class Nosotros extends javax.swing.JFrame {
      */
     public Nosotros() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -48,7 +49,7 @@ public class Nosotros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+this.dispose();        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -76,6 +77,8 @@ public class Nosotros extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Nosotros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

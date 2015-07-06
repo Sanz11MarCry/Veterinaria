@@ -7,7 +7,9 @@ package veterinaria;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,12 +20,35 @@ import javax.swing.JOptionPane;
  * @author SANZ11
  */
 public class RegistrarAnimal extends javax.swing.JFrame {
-//mnada
+    conectar con = new conectar();
+      Connection reg =con.conexion();
+      void cargar(String valor) {
+        String mostrar = "SELECT * FROM cliente WHERE CONCAT(Documento,Nombres,Apellidos,Genero,Direccion,Correo,Telefono) LIKE '%" + valor + "%'";
+
+        try {
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(mostrar);
+            while (rs.next()) {
+                rs.getString("Documento");
+                rs.getString("Nombres");
+                rs.getString("Apellidos");
+                rs.getString("Genero");
+                rs.getString("Direccion");
+                rs.getString("Correo");
+                rs.getString("Telefono");
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+
     /**
      * Creates new form RegistrarAnimal
      */
     public RegistrarAnimal() {
         initComponents();
+        this.setLocationRelativeTo(null);// para ke aparesca en el medio
         Calendar cal = Calendar.getInstance();//instanciamos y creamos un objeto CAL
         String fecha = cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH)+1) + "/" + cal.get(cal.YEAR);// obtenemos los datos 
         this.lblfecha.setText(fecha);// ESCRIBIMOS EN EL LBLFECHA
@@ -61,12 +86,15 @@ public class RegistrarAnimal extends javax.swing.JFrame {
         btGuardar = new javax.swing.JButton();
         btNuevo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        txtotro = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblfecha = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(txtDNICliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 47, 98, -1));
 
@@ -87,7 +115,12 @@ public class RegistrarAnimal extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
         jLabel5.setText("Tipo:");
 
-        spTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        spTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gato", "Perro", "Pez", "Conejo", "Tortuga", "Loro", "Hamster", "Perico", "Otros" }));
+        spTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spTipoActionPerformed(evt);
+            }
+        });
 
         spmes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mes(es)", "Año(s)" }));
 
@@ -109,7 +142,11 @@ public class RegistrarAnimal extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 102, 0));
         jLabel2.setText("Nombre:");
 
-        txtID_Animal.setEnabled(false);
+        txtID_Animal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID_AnimalActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 0));
@@ -134,20 +171,34 @@ public class RegistrarAnimal extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 173, Short.MAX_VALUE)
         );
+
+        jButton1.setText("Mostrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(13, 13, 13)
-                        .addComponent(txtEdadNUM, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEdadNUM, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spmes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -158,8 +209,8 @@ public class RegistrarAnimal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(spGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRaza, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                            .addComponent(txtNombre)))
+                            .addComponent(txtRaza)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
@@ -167,27 +218,42 @@ public class RegistrarAnimal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btGuardar)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtID_Animal, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(spTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtotro, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtID_Animal, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 148, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(54, 54, 54)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btGuardar)
                         .addGap(18, 18, 18)
-                        .addComponent(btNuevo))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48))
+                        .addComponent(btNuevo)))
+                .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(48, Short.MAX_VALUE)
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtID_Animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,26 +273,22 @@ public class RegistrarAnimal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(spTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(txtotro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtID_Animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(15, 15, 15)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btGuardar)
-                            .addComponent(btNuevo))))
-                .addGap(35, 35, 35))
+                            .addComponent(jLabel7))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btGuardar)
+                    .addComponent(btNuevo)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(26, 26, 26))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 500, 300));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 480, 310));
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 204));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -249,12 +311,12 @@ public class RegistrarAnimal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(lblfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3))
+                .addComponent(lblfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel10)
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,14 +330,13 @@ public class RegistrarAnimal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 80));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        conectar con = new conectar();
-      Connection reg =con.conexion();
+        
       String dni,nomb,ID_Animal,raza,gen,edad,mes,tipo,color;
       String sql;
       dni=txtDNICliente.getText();
@@ -287,6 +348,10 @@ public class RegistrarAnimal extends javax.swing.JFrame {
       mes= spmes.getSelectedItem().toString();
       tipo=spTipo.getSelectedItem().toString();
       color=  txtColor.getText();
+      if((String)spTipo.getSelectedItem()== "Otros"){
+          tipo=txtotro.getText();
+            
+        }
       if(txtDNICliente.getText()==null||txtID_Animal.getText()==null||txtNombre.getText()==null||txtRaza.getText()==null
               ||spGenero.getSelectedItem().toString()==null|spTipo.getSelectedItem().toString()==null){
           JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
@@ -312,7 +377,61 @@ public class RegistrarAnimal extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }}
+      
     }//GEN-LAST:event_btGuardarActionPerformed
+
+    private void spTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spTipoActionPerformed
+
+    }//GEN-LAST:event_spTipoActionPerformed
+
+    private void txtID_AnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_AnimalActionPerformed
+      
+    }//GEN-LAST:event_txtID_AnimalActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            Statement st = reg.createStatement();// creamos un objeto de tipo statemen
+            ResultSet rs = st.executeQuery("Select * from animales where Codigo= '" + txtID_Animal.getText()+ "'");// ALMACENA LOS DATOS DE LA CONSULTA REALIZADA
+            while (rs.next()) {
+                txtDNICliente.setText("" + rs.getString(8));//mostramos en nuestra tabla
+                txtNombre.setText("" + rs.getString(2));
+                txtRaza.setText("" + rs.getString(6));
+                spGenero.setSelectedItem("" + rs.getString(5));
+                txtEdadNUM.setText("" + rs.getString(3));
+                txtColor.setText("" + rs.getString(7));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if((String)spTipo.getSelectedItem()== "Otros"){
+            spTipo.setSelectedItem(txtotro.getText()); }
+        try {
+            PreparedStatement pst = reg.prepareStatement("UPDATE animales SET Cliente='"
+                + txtDNICliente.getText() + "',Nombre='"
+                + txtNombre.getText() + "',Raza='"
+                + txtRaza.getText() + "',Genero='"
+                + spGenero.getSelectedItem().toString() + "',Edad='"
+                + txtEdadNUM.getText() +spmes.getSelectedItem()+ "',Color='"
+                + txtColor.getText() + "',Tipo='"
+                + spTipo.getSelectedItem().toString()+"' WHERE Codigo='" + txtID_Animal.getText() + "'");
+            pst.executeUpdate();
+            cargar("");
+            JOptionPane.showMessageDialog(this, "Modificado con exito");
+            txtDNICliente.setText("");
+            txtNombre.setText("");
+            txtRaza.setText("");
+            txtEdadNUM.setText("");
+            txtColor.setText("");
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,6 +462,10 @@ public class RegistrarAnimal extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -355,6 +478,8 @@ public class RegistrarAnimal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btNuevo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -378,5 +503,6 @@ public class RegistrarAnimal extends javax.swing.JFrame {
     private javax.swing.JTextField txtID_Animal;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRaza;
+    private javax.swing.JTextField txtotro;
     // End of variables declaration//GEN-END:variables
 }

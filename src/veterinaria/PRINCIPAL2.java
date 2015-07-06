@@ -78,7 +78,7 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 455, Short.MAX_VALUE)
+                .addGap(0, 635, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,7 +99,7 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         );
 
         desktopPane.add(jPanel1);
-        jPanel1.setBounds(0, 470, 670, 30);
+        jPanel1.setBounds(0, 500, 850, 30);
 
         jMenu5.setText("Archivo");
 
@@ -169,7 +169,7 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         editMenu.setText("Citas");
 
         cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Nueva Cita");
+        cutMenuItem.setText("Registar Cita");
         cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cutMenuItemActionPerformed(evt);
@@ -178,7 +178,7 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         editMenu.add(cutMenuItem);
 
         copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Verificar citas");
+        copyMenuItem.setText("Consultar Cita");
         copyMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 copyMenuItemActionPerformed(evt);
@@ -187,7 +187,7 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         editMenu.add(copyMenuItem);
 
         pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Cambiar Cita");
+        pasteMenuItem.setText("Actualizar Cita");
         editMenu.add(pasteMenuItem);
 
         menuBar.add(editMenu);
@@ -224,11 +224,11 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
         );
 
         pack();
@@ -264,8 +264,7 @@ public class PRINCIPAL2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Factura factura = new Factura();
-        factura.show();
+       
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

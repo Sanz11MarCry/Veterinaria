@@ -1,3 +1,5 @@
+
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -58,13 +60,18 @@ public class PRINCIPAL extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        contentMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +88,7 @@ public class PRINCIPAL extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(452, Short.MAX_VALUE)
+                .addContainerGap(622, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -103,8 +110,11 @@ public class PRINCIPAL extends javax.swing.JFrame {
         );
 
         desktopPane.add(jPanel1);
-        jPanel1.setBounds(0, 470, 670, 30);
+        jPanel1.setBounds(0, 530, 840, 30);
 
+        jMenu5.setBackground(new java.awt.Color(153, 255, 204));
+        jMenu5.setBorder(new javax.swing.border.MatteBorder(null));
+        jMenu5.setForeground(new java.awt.Color(255, 102, 0));
         jMenu5.setText("Inicio");
 
         jMenuItem3.setText("Nosotros");
@@ -172,29 +182,50 @@ public class PRINCIPAL extends javax.swing.JFrame {
         editMenu.setMnemonic('e');
         editMenu.setText("Citas");
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Nueva Cita");
-        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        jMenu2.setText("Registro de Citas ");
+
+        jMenuItem7.setText("Registrar cita");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cutMenuItemActionPerformed(evt);
+                jMenuItem7ActionPerformed(evt);
             }
         });
-        editMenu.add(cutMenuItem);
+        jMenu2.add(jMenuItem7);
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Verificar citas");
-        copyMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                copyMenuItemActionPerformed(evt);
-            }
-        });
-        editMenu.add(copyMenuItem);
+        jMenuItem8.setText("Actualizar cita");
+        jMenu2.add(jMenuItem8);
 
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Cambiar Cita");
-        editMenu.add(pasteMenuItem);
+        jMenuItem9.setText("Consultar cita");
+        jMenu2.add(jMenuItem9);
+
+        editMenu.add(jMenu2);
 
         menuBar.add(editMenu);
+
+        jMenu1.setText("Registro Historial");
+
+        jMenuItem1.setText("Insertar Historial Medico");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem6.setText("Consultar historial médico");
+        jMenu1.add(jMenuItem6);
+
+        menuBar.add(jMenu1);
+
+        jMenu4.setText(" Vacunación ");
+
+        jMenuItem10.setText("Insertar Registro de fecha de vacuna");
+        jMenu4.add(jMenuItem10);
+
+        jMenuItem11.setText("Consultar fechas de Vacunas");
+        jMenu4.add(jMenuItem11);
+
+        menuBar.add(jMenu4);
 
         helpMenu.setMnemonic('h');
         helpMenu.setText("Administrar");
@@ -210,29 +241,17 @@ public class PRINCIPAL extends javax.swing.JFrame {
 
         menuBar.add(helpMenu);
 
-        jMenu1.setText("Opciónes");
-
-        jMenuItem1.setText("Factura");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        menuBar.add(jMenu1);
-
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
 
         pack();
@@ -250,19 +269,11 @@ public class PRINCIPAL extends javax.swing.JFrame {
 
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
-    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
-
-    }//GEN-LAST:event_cutMenuItemActionPerformed
-
     private void contentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItemActionPerformed
-        NuevoUsuario nu = new NuevoUsuario();
-        nu.show();
+        usuarios nu = new usuarios();
+        desktopPane.add(nu);
 
     }//GEN-LAST:event_contentMenuItemActionPerformed
-
-    private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_copyMenuItemActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
        BuscarAnimal bus_ani = new BuscarAnimal();
@@ -270,8 +281,7 @@ public class PRINCIPAL extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Factura factura = new Factura();
-        factura.show();
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -289,6 +299,11 @@ public class PRINCIPAL extends javax.swing.JFrame {
        RegistrarAnimal reg_ani = new RegistrarAnimal();
        reg_ani.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        RegistrarCita r= new RegistrarCita();
+        r.show();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,6 +332,8 @@ public class PRINCIPAL extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -328,8 +345,6 @@ public class PRINCIPAL extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
@@ -337,20 +352,27 @@ public class PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblfecha;
     private javax.swing.JLabel lblhora;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables

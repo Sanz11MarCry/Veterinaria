@@ -37,18 +37,15 @@ DefaultTableModel modelo;
     void Generarnumeracion()
     {
      String SQL="select max(ID_usuario) from usuario";
-       // String SQL="select count(*) from factura";
-        //String SQL="SELECT MAX(cod_emp) AS cod_emp FROM empleado";
-        //String SQL="SELECT @@identity AS ID";
+       
         
           int c=0;
-          int b=0;
         try {
            Statement st = cn.createStatement();
            ResultSet rs=st.executeQuery(SQL);
             while(rs.next())
             {              
-                 c=rs.getInt(1);
+                 c=rs.getInt(0);
             }
             
            
@@ -98,6 +95,8 @@ DefaultTableModel modelo;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblId = new javax.swing.JLabel();
         lblNick = new javax.swing.JLabel();
@@ -107,27 +106,45 @@ DefaultTableModel modelo;
         txtnick = new javax.swing.JTextField();
         cbotipo = new javax.swing.JComboBox();
         txtpass = new javax.swing.JPasswordField();
+        btnregistrar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbusuario = new javax.swing.JTable();
         btneliminar = new javax.swing.JButton();
-        btnregistrar = new javax.swing.JButton();
-        btnaceptar = new javax.swing.JButton();
         txtcontra = new javax.swing.JPasswordField();
-        btnSalir = new javax.swing.JButton();
+        btnaceptar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 204, 204));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo Usuario"));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel1.setText("NUEVO USUARIO:");
+
+        jPanel1.setBackground(new java.awt.Color(0, 255, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 153, 0)));
+        jPanel1.setForeground(new java.awt.Color(255, 102, 0));
+
+        lblId.setBackground(new java.awt.Color(0, 102, 255));
+        lblId.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblId.setForeground(new java.awt.Color(0, 0, 255));
         lblId.setText("Id:");
 
+        lblNick.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblNick.setForeground(new java.awt.Color(0, 51, 204));
         lblNick.setText("Nick:");
 
+        lblPasword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblPasword.setForeground(new java.awt.Color(0, 51, 255));
         lblPasword.setText("Password:");
 
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 204));
         jLabel4.setText("Tipo Usuario:");
 
         txtid.addActionListener(new java.awt.event.ActionListener() {
@@ -156,10 +173,10 @@ DefaultTableModel modelo;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblId)
-                    .addComponent(lblNick)
                     .addComponent(lblPasword)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(lblId, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNick, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtpass)
@@ -172,8 +189,8 @@ DefaultTableModel modelo;
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblId, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -189,6 +206,20 @@ DefaultTableModel modelo;
                     .addComponent(cbotipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btnregistrar.setText("Registrar");
+        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistrarActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         tbusuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,13 +238,6 @@ DefaultTableModel modelo;
             }
         });
 
-        btnregistrar.setText("Registrar");
-        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnregistrarActionPerformed(evt);
-            }
-        });
-
         btnaceptar.setText("Aceptar");
         btnaceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,59 +245,147 @@ DefaultTableModel modelo;
             }
         });
 
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(btnregistrar)
+                        .addGap(55, 55, 55)
+                        .addComponent(btnSalir))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(btneliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnaceptar)
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnaceptar)
+                            .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btneliminar)
+                            .addComponent(btnSalir)
+                            .addComponent(btnregistrar))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnregistrar)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnSalir)
-                        .addGap(73, 73, 73)
-                        .addComponent(btneliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnaceptar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnregistrar)
-                    .addComponent(btneliminar)
-                    .addComponent(btnaceptar)
-                    .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-String ins="INSERT INTO usuario (nick, contraseña,tipo_usuario) VALUES(?,?,?)";
+    private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaceptarActionPerformed
+        // TODO add your handling code here:
+        String compara="";
+        String contra="";
+        contra= new String(txtcontra.getPassword());
+
+        String cap="";
+        System.out.print(cap);
+        String sql="SELECT * FROM usuario WHERE nick='"+cap+"'";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next())
+            {
+                compara=rs.getString("contraseña");
+            }
+            System.out.println(compara);
+        } catch (SQLException ex) {
+            Logger.getLogger(usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(compara.equals(contra))
+        {
+
+            String eli="DELETE FROM usuario WHERE ID_usuario = '"+idfila+"'";
+            PreparedStatement pst;
+            try {
+                pst = cn.prepareStatement(eli);
+                int m=pst.executeUpdate();
+                if(m>0){
+                    JOptionPane.showMessageDialog(this, "elimino regisro");
+                    mostrarusuarios();
+                    txtcontra.setText(null);
+
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar");
+                    mostrarusuarios();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    }//GEN-LAST:event_btnaceptarActionPerformed
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        // TODO add your handling code here:
+        int fila= tbusuario.getSelectedRow();
+        if(fila<0)
+        {
+            JOptionPane.showMessageDialog(this, "Seleccione alguna fila");
+        }
+        else
+        {
+            idfila= tbusuario.getValueAt(fila, 0).toString();
+            JOptionPane.showMessageDialog(this, "debe Ingresar la Contraseña para Eliminar algun Usuario");
+            txtcontra.requestFocus();
+        }
+    }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
+        String ins="INSERT INTO usuario (nick, contraseña,tipo_usuario) VALUES(?,?,?)";
         try {
             PreparedStatement pstO = cn.prepareStatement(ins);
             pstO.setString(1, txtnick.getText());
@@ -291,94 +403,25 @@ String ins="INSERT INTO usuario (nick, contraseña,tipo_usuario) VALUES(?,?,?)";
             }
             else
             {
-                 JOptionPane.showMessageDialog(this, "Error");
+                JOptionPane.showMessageDialog(this, "Error");
             }
-            
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-}//GEN-LAST:event_btnregistrarActionPerformed
-
-private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-// TODO add your handling code here:
-    int fila= tbusuario.getSelectedRow();
-    if(fila<0)
-    {
-        JOptionPane.showMessageDialog(this, "Seleccione alguna fila");
-    }
-    else
-    {
-         idfila= tbusuario.getValueAt(fila, 0).toString();
-         JOptionPane.showMessageDialog(this, "debe Ingresar la Contraseña para Eliminar algun Usuario");
-         txtcontra.requestFocus();
-    }
-}//GEN-LAST:event_btneliminarActionPerformed
-
-private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaceptarActionPerformed
-// TODO add your handling code here:
-    String compara="";
-    String contra="";
-    contra= new String(txtcontra.getPassword());
-    
-    String cap="";
-    System.out.print(cap);
-    String sql="SELECT * FROM usuario WHERE nick='"+cap+"'";
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while(rs.next())
-            {
-            compara=rs.getString("contraseña");
-            }
-          System.out.println(compara);
-        } catch (SQLException ex) {
-            Logger.getLogger(usuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          if(compara.equals(contra))
-            {
-                
-                String eli="DELETE FROM usuario WHERE ID_usuario = '"+idfila+"'";
-                PreparedStatement pst;
-            try {
-                pst = cn.prepareStatement(eli);
-                  int m=pst.executeUpdate();
-                if(m>0){
-                    JOptionPane.showMessageDialog(this, "elimino regisro");
-                     mostrarusuarios();
-                     txtcontra.setText(null);
-                    
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(this, "No se pudo eliminar");
-                    mostrarusuarios();
-                }
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(usuarios.class.getName()).log(Level.SEVERE, null, ex);
-            }
-              
-            }
-    
-}//GEN-LAST:event_btnaceptarActionPerformed
-
-    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidActionPerformed
-
-    private void txtnickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnickActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnickActionPerformed
+    }//GEN-LAST:event_btnregistrarActionPerformed
 
     private void cbotipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbotipoActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
+    private void txtnickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnickActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnickActionPerformed
+
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
@@ -386,8 +429,10 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnregistrar;
     private javax.swing.JComboBox cbotipo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNick;

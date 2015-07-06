@@ -7,16 +7,44 @@ package veterinaria;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author AbelSanz
  */
 public class RegistrarCliente extends javax.swing.JFrame {
+
+    conectar con = new conectar();
+    Connection reg = con.conexion();
+
+    void cargar(String valor) {
+        String mostrar = "SELECT * FROM cliente WHERE CONCAT(Documento,Nombres,Apellidos,Genero,Direccion,Correo,Telefono) LIKE '%" + valor + "%'";
+
+        try {
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(mostrar);
+            while (rs.next()) {
+                rs.getString("Documento");
+                rs.getString("Nombres");
+                rs.getString("Apellidos");
+                rs.getString("Genero");
+                rs.getString("Direccion");
+                rs.getString("Correo");
+                rs.getString("Telefono");
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Creates new form NewJFrame
@@ -55,8 +83,11 @@ public class RegistrarCliente extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        t_boton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 204));
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
@@ -175,8 +206,29 @@ public class RegistrarCliente extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Emmett", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("REGISTRAR CLIENTE :");
+
+        jButton4.setText("Modificar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Mostrar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        t_boton.setText("Eliminar");
+        t_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_botonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -189,10 +241,13 @@ public class RegistrarCliente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(t_boton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -205,11 +260,17 @@ public class RegistrarCliente extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5)
+                .addGap(16, 16, 16)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(t_boton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -238,35 +299,39 @@ public class RegistrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      conectar con = new conectar();
-      Connection reg =con.conexion();
-      String dni,nomb,ape,gen,dir,correo,tel;
-      String sql;
-      dni=txt_DNI.getText();
-      nomb = txt_NOMBRE.getText();
-      ape= txt_APELLIDO.getText();
-      gen=cbGenero.getSelectedItem().toString();
-      dir= txt_DIRECCION.getText();
-      correo=txt_CORREO.getText();
-      tel=  txt_TELEFONO.getText();
-      sql="INSERT INTO cliente(Documento,Nombres,Apellidos,Genero,Direccion,Correo,Telefono)VALUES(?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement pst=reg.prepareStatement(sql);
-            pst.setString(1,dni);
-            pst.setString(2,nomb);
-            pst.setString(3,ape);
-            pst.setString(4,gen);
-            pst.setString(5,dir);
-            pst.setString(6,correo);
-            pst.setString(7,tel); 
-            int n=pst.executeUpdate();
-            if(n>0){
-                JOptionPane.showMessageDialog(null,"Registrado con exito");
-            }
-            
 
+        String dni, nomb, ape, gen, dir, correo, tel;
+        String sql;
+        dni = txt_DNI.getText();
+        nomb = txt_NOMBRE.getText();
+        ape = txt_APELLIDO.getText();
+        gen = cbGenero.getSelectedItem().toString();
+        dir = txt_DIRECCION.getText();
+        correo = txt_CORREO.getText();
+        tel = txt_TELEFONO.getText();
+        sql = "INSERT INTO cliente(Documento,Nombres,Apellidos,Genero,Direccion,Correo,Telefono)VALUES(?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement pst = reg.prepareStatement(sql);
+            pst.setString(1, dni);
+            pst.setString(2, nomb);
+            pst.setString(3, ape);
+            pst.setString(4, gen);
+            pst.setString(5, dir);
+            pst.setString(6, correo);
+            pst.setString(7, tel);
+            int n = pst.executeUpdate();
+            if (n > 0) {
+                JOptionPane.showMessageDialog(null, "Registrado con exito");
+                txt_DNI.setText("");
+        txt_NOMBRE.setText("");
+        txt_APELLIDO.setText("");
+        txt_DIRECCION.setText("");
+        txt_CORREO.setText("");
+        txt_TELEFONO.setText("");
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.print(ex.getMessage());
+            JOptionPane.showMessageDialog(this, "" + ex.getMessage());
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -274,6 +339,72 @@ public class RegistrarCliente extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            PreparedStatement pst = reg.prepareStatement("UPDATE cliente SET Documento='"
+                    + txt_DNI.getText() + "',Nombres='"
+                    + txt_NOMBRE.getText() + "',Apellidos='"
+                    + txt_APELLIDO.getText() + "',Genero='"
+                    + cbGenero.getSelectedItem().toString() + "',Direccion='"
+                    + txt_DIRECCION.getText() + "',Correo='"
+                    + txt_CORREO.getText() + "',Telefono='"
+                    + txt_TELEFONO.getText() + "' WHERE Documento='" + txt_DNI.getText() + "'");
+            pst.executeUpdate();
+            cargar("");
+            JOptionPane.showMessageDialog(this, "Modificado con exito");
+                txt_DNI.setText("");
+                txt_NOMBRE.setText("");
+                txt_APELLIDO.setText("");
+                txt_DIRECCION.setText("");
+                txt_CORREO.setText("");
+                txt_TELEFONO.setText("");
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        try {
+            Statement st = reg.createStatement();// creamos un objeto de tipo statemen
+            ResultSet rs = st.executeQuery("Select * from cliente where Documento= '" + txt_DNI.getText() + "' or Nombres= '" + txt_NOMBRE.getText() + "' or Apellidos= '" + txt_APELLIDO.getText() + "'");// ALMACENA LOS DATOS DE LA CONSULTA REALIZADA
+            while (rs.next()) {
+                txt_DNI.setText("" + rs.getString(1));//mostramos en nuestra tabla
+                txt_NOMBRE.setText("" + rs.getString(2));
+                txt_APELLIDO.setText("" + rs.getString(3));
+                cbGenero.setSelectedItem("" + rs.getString(4));
+                txt_DIRECCION.setText("" + rs.getString(5));
+                txt_CORREO.setText("" + rs.getString(6));
+                txt_TELEFONO.setText("" + rs.getString(7));
+
+                
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void t_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_botonActionPerformed
+        String sql=("DELETE FROM cliente WHERE Documento='"+txt_DNI.getText()+"'");//hacemos que se elimine en el sql
+        try {
+            PreparedStatement st=reg.prepareStatement(sql);
+            int n=st.executeUpdate();
+            if(n>=0){
+                JOptionPane.showMessageDialog(null,"REGISTRO ELIMINADO");
+            }else{
+                JOptionPane.showMessageDialog(null, "que pondrias tu pe");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txt_DNI.setText("");
+
+    }//GEN-LAST:event_t_botonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,6 +435,10 @@ public class RegistrarCliente extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -318,6 +453,8 @@ public class RegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -328,6 +465,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDNI;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JButton t_boton;
     private javax.swing.JTextField txt_APELLIDO;
     private javax.swing.JTextField txt_CORREO;
     private javax.swing.JTextField txt_DIRECCION;

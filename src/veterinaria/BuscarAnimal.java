@@ -5,19 +5,99 @@
  */
 package veterinaria;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author crisy kaina
  */
 public class BuscarAnimal extends javax.swing.JFrame {
-
+    
+    void mostrado(){
+    DefaultTableModel model = new  DefaultTableModel();
+          model.addColumn("Codigo");
+          model.addColumn("Nombre");
+          model.addColumn("Edad");
+          model.addColumn("Genero");
+          model.addColumn("Tipo");
+          model.addColumn("Raza");
+          model.addColumn("Color");
+          model.addColumn("DNI Cliente");
+          table.setModel(model);
+        String[] dato = new String[8];
+        try {
+            Statement st= cone.createStatement();// creamos un objeto de tipo statemen
+             ResultSet rs= st.executeQuery("Select * from animales ");// ALMACENA LOS DATOS DE LA CONSULTA REALIZADA
+             while(rs.next()){
+             dato[0]=rs.getString(1);//mostramos en nuestra tabla
+             dato[1]=rs.getString(2);
+             dato[2]=rs.getString(3);
+             dato[3]=rs.getString(4);
+             dato[4]=rs.getString(5);
+             dato[5]=rs.getString(6);
+             dato[6]=rs.getString(7);
+             dato[7]=rs.getString(8);
+             model.addRow(dato);
+             
+             }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * Creates new form BuscarAnimal
      */
     public BuscarAnimal() {
         initComponents();
+        mostrado();
+       
+        this.setLocationRelativeTo(null);
     }
-
+    void Buscar(){
+        DefaultTableModel model = new  DefaultTableModel();
+          model.addColumn("Codigo");
+          model.addColumn("Nombre");
+          model.addColumn("Edad");
+          model.addColumn("Genero");
+          model.addColumn("Tipo");
+          model.addColumn("Raza");
+          model.addColumn("Color");
+          model.addColumn("DNI Cliente");
+          table.setModel(model);
+        String[] dato = new String[8];
+        try {
+            Statement st= cone.createStatement();// creamos un objeto de tipo statemen
+             ResultSet rs= st.executeQuery("Select * from animales where Codigo= '"+txtdato.getText()+"' or Nombre= '"+txtdato.getText()+"' or Edad= '"+txtdato.getText()+"' or Genero= '"
+                                            +txtdato.getText()+"' or Tipo= '"+txtdato.getText()+"' or Raza= '"+txtdato.getText()+"' or Color= '"+txtdato.getText()+"' or Cliente= '"+txtdato.getText()+"'");// ALMACENA LOS DATOS DE LA CONSULTA REALIZADA
+             while(rs.next()){
+             dato[0]=rs.getString(1);//mostramos en nuestra tabla
+             dato[1]=rs.getString(2);
+             dato[2]=rs.getString(3);
+             dato[3]=rs.getString(4);
+             dato[4]=rs.getString(5);
+             dato[5]=rs.getString(6);
+             dato[6]=rs.getString(7);
+             dato[7]=rs.getString(8);
+             model.addRow(dato);
+             
+             }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+    }
+    conectar cc = new conectar();
+    Connection cone = cc.conexion();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,25 +107,38 @@ public class BuscarAnimal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtAnimal = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtdato = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Buscar Animal");
+        jPanel1.setBackground(new java.awt.Color(0, 255, 153));
 
-        txtAnimal.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel3.setText("Ingrese un Dato:");
+
+        txtdato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAnimalActionPerformed(evt);
+                txtdatoActionPerformed(evt);
             }
         });
 
+        jScrollPane1.setViewportView(table);
+
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -54,67 +147,87 @@ public class BuscarAnimal extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
-            },
-            new String [] {
-                "ID", "NOMBRE", "EDAD", "GENERO", "TIPO", "RAZA", "COLOR", "CLIENTE"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
+        jLabel1.setFont(new java.awt.Font("AcmeFont", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel1.setText("Buscar Animal");
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButton1.setText("eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
 
-        jLabel3.setText("Ingrese un Dato:");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalir)
+                .addGap(27, 27, 27))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtdato, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtdato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnSalir)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(btnBuscar)
-                        .addGap(62, 62, 62)
-                        .addComponent(btnSalir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(txtAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(195, 195, 195)
-                        .addComponent(jLabel3)))
-                .addContainerGap(42, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnSalir))
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -124,9 +237,31 @@ public class BuscarAnimal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void txtAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnimalActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        Buscar();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtdatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdatoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAnimalActionPerformed
+    }//GEN-LAST:event_txtdatoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                       
+            try {
+               PreparedStatement pst = cone.prepareStatement("DELETE FROM animales WHERE Codigo = '"+txtdato.getText()+"'");
+                  int m=pst.executeUpdate();
+                if(m>0){
+                    JOptionPane.showMessageDialog(this, "elimino regisro");                     
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar");
+                   }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(BuscarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +289,7 @@ public class BuscarAnimal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(BuscarAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -166,10 +302,13 @@ public class BuscarAnimal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtAnimal;
+    private javax.swing.JTable table;
+    private javax.swing.JTextField txtdato;
     // End of variables declaration//GEN-END:variables
 }
